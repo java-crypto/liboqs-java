@@ -62,7 +62,7 @@ public class SigTest {
         System.out.println(sb.toString());
 
         // own functions
-        String filename = "SIG_" + sig_name.replaceAll("\\.", "_") + getActualDateReverse() + ".txt";
+        String filename = "SIG_" + sig_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + ".txt";
         printLog("SIG " + sig_name);
 
 
