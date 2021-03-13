@@ -66,12 +66,18 @@ public class KEMTest {
         // own functions
         logString = "";
         String filename = "KEM_" + kem_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + ".txt";
-        printLog("KEM " + kem_name);
+        printLog("KEM");
+        printLog(kem_name);
+        printLog("***********************************");
         printLog("server PrivateKey size: " + server.export_secret_key().length);
         printLog("server PublicKey size:  " + server.export_public_key().length);
         printLog("clientPublicKey length: " + client_public_key.length + " data: " + bytesToHex(client_public_key));
+        printLog("***********************************");
+        printLog("ciphertext to share");
         printLog("ciphertext length: " + ciphertext.length);
         printLog("ciphertext hex:\n" + bytesToHex(ciphertext));
+        printLog("***********************************");
+        printLog("shared key for both parties");
         printLog("server shared key length: " + shared_secret_server.length + " data: " + bytesToHex(shared_secret_server));
         printLog("client shared key length: " + shared_secret_client.length + " data: " + bytesToHex(shared_secret_client));
         // save data

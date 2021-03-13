@@ -64,10 +64,14 @@ public class SigTest {
         // own functions
         logString = "";
         String filename = "SIG_" + sig_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + ".txt";
-        printLog("SIG " + sig_name);
+        //printLog("SIG " + sig_name);
+        printLog("SIG");
+        printLog(sig_name);
+        printLog("***********************************");
         printLog("signer PrivateKey size: " + signer.export_secret_key().length);
         printLog("signer PublicKey size:  " + signer.export_public_key().length);
         printLog("signerPublicKey length: " + signer_public_key.length + " data: " + bytesToHex(signer_public_key));
+        printLog("***********************************");
         printLog("signature length: " + signature.length);
         printLog("signature hex:\n" + bytesToHex(signature));
         printLog("signature valid: " + is_valid);
