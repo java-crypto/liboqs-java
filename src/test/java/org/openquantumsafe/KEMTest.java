@@ -64,7 +64,7 @@ public class KEMTest {
         System.out.println(sb.toString());
 
         // own functions
-        String filename = "KEM_" + kem_name.replaceAll("\\.", "_") + getActualDateReverse() + ".txt";
+        String filename = "KEM_" + kem_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + ".txt";
         printLog("KEM " + kem_name);
         printLog("server PrivateKey size: " + server.export_secret_key().length);
         printLog("server PublicKey size:  " + server.export_public_key().length);
