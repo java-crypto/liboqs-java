@@ -68,7 +68,7 @@ public class KEMTest {
             printLog(printString);
             KeyEncapsulation client = new KeyEncapsulation(kemName);
             KeyEncapsulation server = new KeyEncapsulation(kemName);
-            // save the keys as byte array, here shown for server
+            // save the keys as byte array, here shown for server ### with x00 filled byte arrays
             byte[] serverPrivateKeyEncoded = server.export_secret_key();
             byte[] serverPublicKeyEncoded = server.export_public_key();
             printString = "generated private key length: " + serverPrivateKeyEncoded.length;
@@ -82,16 +82,12 @@ public class KEMTest {
             //Files.write(Paths.get(filename + ".server.publickey"), serverPublicKeyEncoded);
             //Files.write(Paths.get(filename + ".client.privatekey"), client.export_secret_key());
             //Files.write(Paths.get(filename + ".client.publickey"), client.export_public_key());
-            printString = "server privatekey:\n" + bytesToHex(serverPrivateKeyEncoded);
-            System.out.println(printString);
-            printLog(printString);
-            printString = "server publickey:\n" + bytesToHex(serverPublicKeyEncoded);
-            System.out.println(printString);
-            printLog(printString);
-            System.out.println("server.print_details:\n");
-            server.print_details();
-            System.out.println("server.print_KeyEncapsulation:\n");
-            server.print_KeyEncapsulation();
+            //printString = "server privatekey:\n" + bytesToHex(serverPrivateKeyEncoded);
+            //System.out.println(printString);
+            //printLog(printString);
+            //printString = "server publickey:\n" + bytesToHex(serverPublicKeyEncoded);
+            //System.out.println(printString);
+            //printLog(printString);
             //printString = "private and public key from server and client saved to file " + filename + ".extension";
             //System.out.println(printString);
             //printLog(printString);
@@ -125,6 +121,12 @@ public class KEMTest {
             printLog(printString);
             // save logString to file
             Files.write(Paths.get(filename + ".txt"), logString.getBytes(StandardCharsets.UTF_8));
+
+            // not logged just printed out
+            System.out.println("server.print_details:\n");
+            server.print_details();
+            System.out.println("server.print_KeyEncapsulation:\n");
+            server.print_KeyEncapsulation();
         }
         /*
         StringBuilder sb = new StringBuilder();
