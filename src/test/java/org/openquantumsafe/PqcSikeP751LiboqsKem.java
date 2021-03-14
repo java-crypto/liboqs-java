@@ -12,6 +12,7 @@ public class PqcSikeP751LiboqsKem {
     public static void main(String[] args) throws IOException {
         logString = "";
         String kemName = "Sike-p751";
+        String filename = "PQC Sike-p751 KEM" + getActualDateReverse();
 
         String printString = "PQC Sike key encapsulation mechanism (KEM) with Liboqs";
         System.out.println(printString);
@@ -40,6 +41,15 @@ public class PqcSikeP751LiboqsKem {
         System.out.println(printString);
         printLog(printString);
         printString = "generated public key length:  " + serverPublicKeyEncoded.length;
+        System.out.println(printString);
+        printLog(printString);
+        // save the keys to file
+        Files.write(Paths.get(filename + ".server.privatekey"), serverPrivateKeyEncoded);
+        Files.write(Paths.get(filename + ".server.publickey"), serverPublicKeyEncoded);
+        Files.write(Paths.get(filename + ".client.privatekey"), client.export_secret_key());
+        Files.write(Paths.get(filename + ".server.publickey"), client.export_public_key());
+        printString = "private and public key from server and client saved to file "
+            + filename + ".extension";
         System.out.println(printString);
         printLog(printString);
 
@@ -72,8 +82,7 @@ public class PqcSikeP751LiboqsKem {
         printLog(printString);
 
         // save logString to file
-        String filename = "PQC Sike-p751 KEM " + getActualDateReverse() + ".txt";
-        Files.write(Paths.get(filename), logString.getBytes(StandardCharsets.UTF_8));
+        Files.write(Paths.get(filename + ".txt"), logString.getBytes(StandardCharsets.UTF_8));
 
     }
     private static String bytesToHex(byte[] bytes) {
