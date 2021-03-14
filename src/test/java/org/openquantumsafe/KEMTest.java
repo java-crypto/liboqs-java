@@ -22,6 +22,7 @@ public class KEMTest {
     private static ArrayList<String> enabled_kems;
 
     private static String logString = ""; // own
+    private static String algorithmFacts = ""; // own
 
     /**
      * Before running the tests, get a list of enabled KEMs
@@ -45,8 +46,8 @@ public class KEMTest {
 
         logString = ""; // SIKE-p751
         String kemName = "SIKE-p751";
-        System.out.println("kem_name:#" + kem_name + "#");
-        System.out.println(" kemName:#" + kemName + "#");
+        //System.out.println("kem_name:#" + kem_name + "#");
+        //System.out.println(" kemName:#" + kemName + "#");
         // just 1 run
         if (kem_name.contentEquals(kemName)) {
             System.out.println("### kem_name: " + kem_name + " ###");
@@ -134,7 +135,7 @@ public class KEMTest {
             PqcSikeP751LiboqsKemTest.run(kemName);
 
         }
-        /*
+
         StringBuilder sb = new StringBuilder();
         sb.append(kem_name);
         sb.append(String.format("%1$" + (40 - kem_name.length()) + "s", ""));
@@ -181,7 +182,12 @@ public class KEMTest {
         // save data
         Files.write(Paths.get(filename), logString.getBytes(StandardCharsets.UTF_8));
 
-         */
+        // algorithmFacts kem | name | private key length | public key length | ciphertext length
+        algorithmFacts = algorithmFacts + "| key exchange (KEM) | " + kem_name + " | "
+                + server.export_secret_key().length + " | " + server.export_public_key()
+                + " | " + ciphertext.length + " |";
+        filename = "KEM_" + kem_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + "_af.txt";
+        Files.write(Paths.get(filename), algorithmFacts.getBytes(StandardCharsets.UTF_8));
     }
 
     /**

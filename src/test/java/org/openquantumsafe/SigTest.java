@@ -22,6 +22,7 @@ public class SigTest {
     private static ArrayList<String> enabled_sigs;
 
     private static String logString = ""; // own
+    private static String algorithmFacts = ""; // own
 
     /**
      * Before running the tests, get a list of enabled Sigs
@@ -40,7 +41,7 @@ public class SigTest {
     public void testAllSigs(String sig_name) throws IOException {
 
         // just 1 run
-        if (sig_name.contentEquals("SIG_Dilithium2")) {
+        //if (sig_name.contentEquals("SIG_Dilithium2")) {
             StringBuilder sb = new StringBuilder();
             sb.append(sig_name);
             sb.append(String.format("%1$" + (40 - sig_name.length()) + "s", ""));
@@ -73,7 +74,14 @@ public class SigTest {
             printLog("signature valid: " + is_valid);
             // save data
             Files.write(Paths.get(filename), logString.getBytes(StandardCharsets.UTF_8));
-        }
+
+            // algorithmFacts kem | name | private key length | public key length | signature length
+            algorithmFacts = algorithmFacts + "| key exchange (KEM) | " + sig_name + " | "
+                + signer.export_secret_key().length + " | " + signer.export_public_key()
+                + " | " + signature.length + " |";
+        filename = "KEM_" + sig_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + "_af.txt";
+        Files.write(Paths.get(filename), algorithmFacts.getBytes(StandardCharsets.UTF_8));
+        //}
     }
 
     /**
