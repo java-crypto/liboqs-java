@@ -45,8 +45,11 @@ public class KEMTest {
 
         logString = ""; // SIKE-p751
         String kemName = "SIKE-p751";
+        System.out.println("kem_name:#" + kem_name + "#");
+        System.out.println(" kemNamr:#" + kemName + "#");
         // just 1 run
         if (kem_name == kemName) {
+            System.out.println("### kem_name: " + kem_name + " ###");
             String filename = "PQC_Sike-p751_KEM_" + getActualDateReverse();
             String printString = "PQC Sike key encapsulation mechanism (KEM) with Liboqs";
             System.out.println(printString);
