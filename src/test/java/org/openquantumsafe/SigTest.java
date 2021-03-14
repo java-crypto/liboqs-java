@@ -38,6 +38,12 @@ public class SigTest {
     @ParameterizedTest(name = "Testing {arguments}")
     @MethodSource("getEnabledSigsAsStream")
     public void testAllSigs(String sig_name) throws IOException {
+
+        // just 1 run
+        if (sig_name != "SIG_Dilithium2") {
+            return;
+        }
+
         StringBuilder sb = new StringBuilder();
         sb.append(sig_name);
         sb.append(String.format("%1$" + (40 - sig_name.length()) + "s", ""));

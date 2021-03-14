@@ -45,6 +45,11 @@ public class KEMTest {
 
         logString = "";
         String kemName = "Sike-p751";
+        // just 1 run
+        if (kem_name != kemName) {
+            return;
+        }
+
         String filename = "PQC_Sike-p751_KEM_" + getActualDateReverse();
 
         String printString = "PQC Sike key encapsulation mechanism (KEM) with Liboqs";
@@ -101,8 +106,10 @@ public class KEMTest {
         byte[] encryptedKey = server_pair.getLeft(); // send to recipient along with the ciphertext
         printString = "encryptedKey length: " + encryptedKey.length + " data: " + bytesToHex(encryptedKey);
         byte[] sharedSecretServer = server_pair.getRight();
-        System.out.println("sharedSecretServer length: " + sharedSecretServer.length + " data: "
-                + bytesToHex(sharedSecretServer));
+        printString = "sharedSecretServer length: " + sharedSecretServer.length + " data: "
+                + bytesToHex(sharedSecretServer);
+        System.out.println(printString);
+        printLog(printString);
 
         printString = "\n* * * decapsulate the keyToEncrypt with the private key of the recipient * * *";
         System.out.println(printString);
