@@ -30,8 +30,8 @@ public class KEMTest {
     public static void init(){
         System.out.println("Initialize list of enabled KEMs OWN");
         // just run  test
-        // enabled_kems = KEMs.get_enabled_KEMs();
-        enabled_kems.add("Sike-p751");
+        enabled_kems = KEMs.get_enabled_KEMs();
+        //enabled_kems.add("Sike-p751");
     }
 
     /**
@@ -41,9 +41,11 @@ public class KEMTest {
     @MethodSource("getEnabledKEMsAsStream")
     public void testAllKEMs(String kem_name) throws IOException {
 
+        System.out.println("*** kem_name: " + kem_name + " ***");
+
         logString = "";
         String kemName = "Sike-p751";
-        String filename = "PQC_Sike-p751_KEM" + getActualDateReverse();
+        String filename = "PQC_Sike-p751_KEM_" + getActualDateReverse();
 
         String printString = "PQC Sike key encapsulation mechanism (KEM) with Liboqs";
         System.out.println(printString);
