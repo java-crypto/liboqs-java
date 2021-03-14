@@ -129,6 +129,10 @@ public class KEMTest {
             server.print_KeyEncapsulation();
 
             exportSecretKey();
+            System.out.println("\n*** starting PqcSikeP751LiboqsKemTest ***");
+            kemName = "SIKE-p751";
+            PqcSikeP751LiboqsKemTest.run(kemName);
+
         }
         /*
         StringBuilder sb = new StringBuilder();
