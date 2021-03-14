@@ -31,7 +31,7 @@ public class KEMTest {
         System.out.println("Initialize list of enabled KEMs OWN");
         // just run  test
         // enabled_kems = KEMs.get_enabled_KEMs();
-        enabled_kems.add("\"Sike-p751");
+        enabled_kems.add("Sike-p751");
     }
 
     /**
