@@ -29,7 +29,9 @@ public class KEMTest {
     @BeforeAll
     public static void init(){
         System.out.println("Initialize list of enabled KEMs OWN");
-        enabled_kems = KEMs.get_enabled_KEMs();
+        // just run  test
+        // enabled_kems = KEMs.get_enabled_KEMs();
+        enabled_kems.add("\"Sike-p751");
     }
 
     /**
@@ -41,7 +43,7 @@ public class KEMTest {
 
         logString = "";
         String kemName = "Sike-p751";
-        String filename = "PQC Sike-p751 KEM" + getActualDateReverse();
+        String filename = "PQC_Sike-p751_KEM" + getActualDateReverse();
 
         String printString = "PQC Sike key encapsulation mechanism (KEM) with Liboqs";
         System.out.println(printString);
@@ -76,7 +78,7 @@ public class KEMTest {
         Files.write(Paths.get(filename + ".server.privatekey"), serverPrivateKeyEncoded);
         Files.write(Paths.get(filename + ".server.publickey"), serverPublicKeyEncoded);
         Files.write(Paths.get(filename + ".client.privatekey"), client.export_secret_key());
-        Files.write(Paths.get(filename + ".server.publickey"), client.export_public_key());
+        Files.write(Paths.get(filename + ".client.publickey"), client.export_public_key());
         printString = "private and public key from server and client saved to file "
                 + filename + ".extension";
         System.out.println(printString);
