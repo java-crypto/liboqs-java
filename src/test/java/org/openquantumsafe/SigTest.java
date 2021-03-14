@@ -77,7 +77,7 @@ public class SigTest {
 
             // algorithmFacts kem | name | private key length | public key length | signature length
             algorithmFacts = algorithmFacts + "| signature | " + sig_name + " | "
-                + signer.export_secret_key().length + " | " + signer.export_public_key()
+                + signer.export_secret_key().length + " | " + signer.export_public_key().length
                 + " | " + signature.length + " |\n";
         filename = "SIG_algorithm_facts_" + "_" + getActualDateReverse() + ".txt";
         Files.write(Paths.get(filename), algorithmFacts.getBytes(StandardCharsets.UTF_8));
