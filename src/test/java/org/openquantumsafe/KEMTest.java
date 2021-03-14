@@ -78,21 +78,24 @@ public class KEMTest {
             System.out.println(printString);
             printLog(printString);
             // save the keys to file
-            Files.write(Paths.get(filename + ".server.privatekey"), serverPrivateKeyEncoded);
-            Files.write(Paths.get(filename + ".server.publickey"), serverPublicKeyEncoded);
-            Files.write(Paths.get(filename + ".client.privatekey"), client.export_secret_key());
-            Files.write(Paths.get(filename + ".client.publickey"), client.export_public_key());
+            //Files.write(Paths.get(filename + ".server.privatekey"), serverPrivateKeyEncoded);
+            //Files.write(Paths.get(filename + ".server.publickey"), serverPublicKeyEncoded);
+            //Files.write(Paths.get(filename + ".client.privatekey"), client.export_secret_key());
+            //Files.write(Paths.get(filename + ".client.publickey"), client.export_public_key());
             printString = "server privatekey:\n" + bytesToHex(serverPrivateKeyEncoded);
             System.out.println(printString);
             printLog(printString);
             printString = "server publickey:\n" + bytesToHex(serverPublicKeyEncoded);
             System.out.println(printString);
             printLog(printString);
+            System.out.println("server.print_details:\n");
+            server.print_details();
+            System.out.println("server.print_KeyEncapsulation:\n");
+            server.print_KeyEncapsulation();
+            //printString = "private and public key from server and client saved to file " + filename + ".extension";
+            //System.out.println(printString);
+            //printLog(printString);
 
-            printString = "private and public key from server and client saved to file "
-                    + filename + ".extension";
-            System.out.println(printString);
-            printLog(printString);
             // the client generates a public key and sends it to the sender
             byte[] clientPublicKey = client.generate_keypair();
             printString = "length of the received clientPublicKey: " + clientPublicKey.length;
