@@ -46,9 +46,9 @@ public class KEMTest {
         logString = ""; // SIKE-p751
         String kemName = "SIKE-p751";
         System.out.println("kem_name:#" + kem_name + "#");
-        System.out.println(" kemNamr:#" + kemName + "#");
+        System.out.println(" kemName:#" + kemName + "#");
         // just 1 run
-        if (kem_name == kemName) {
+        if (kem_name.contentEquals(kemName)) {
             System.out.println("### kem_name: " + kem_name + " ###");
             String filename = "PQC_Sike-p751_KEM_" + getActualDateReverse();
             String printString = "PQC Sike key encapsulation mechanism (KEM) with Liboqs";
@@ -57,7 +57,7 @@ public class KEMTest {
             printString = "\nThis is an example for a key encapsulation mechanism (KEM)";
             System.out.println(printString);
             printLog(printString);
-            printString = "using the algorithm Sike 751 and the PQC library";
+            printString = "using the algorithm Sike p-751 and the PQC library";
             System.out.println(printString);
             printLog(printString);
             printString = "from OpenQuantumSafe.org - liboqs-java";
