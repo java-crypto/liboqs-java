@@ -127,6 +127,8 @@ public class KEMTest {
             server.print_details();
             System.out.println("server.print_KeyEncapsulation:\n");
             server.print_KeyEncapsulation();
+
+            exportSecretKey();
         }
         /*
         StringBuilder sb = new StringBuilder();
@@ -194,6 +196,27 @@ public class KEMTest {
     }
 
     // ********** own methods ***********
+
+    public static void exportSecretKey() {
+        System.out.println("\n***************** start exportPrivateKey *****************\n");
+        KeyEncapsulation server = new KeyEncapsulation("SIKE-p751");
+        byte[] serverSecretKeyEncoded = server.export_secret_key();
+        byte[] serverPublicKeyEncoded = server.export_public_key();
+        System.out.println("secretKey length: " + serverSecretKeyEncoded.length
+                + " data:\n" + bytesToHex(serverSecretKeyEncoded));
+        System.out.println("publicKey length: " + serverPublicKeyEncoded.length
+                + " data:\n" + bytesToHex(serverPublicKeyEncoded));
+        byte[] serverPublicKey = server.generate_keypair();
+        System.out.println("serverPublicKey length: " + serverPublicKey.length
+                + " data:\n" + bytesToHex(serverPublicKey));
+        serverSecretKeyEncoded = server.export_secret_key();
+        serverPublicKeyEncoded = server.export_public_key();
+        System.out.println("secretKey length: " + serverSecretKeyEncoded.length
+                + " data:\n" + bytesToHex(serverSecretKeyEncoded));
+        System.out.println("publicKey length: " + serverPublicKeyEncoded.length
+                + " data:\n" + bytesToHex(serverPublicKeyEncoded));
+        System.out.println("***************** end exportPrivateKey *****************");
+    }
 
     private static String bytesToHex(byte[] bytes) {
         StringBuffer result = new StringBuffer();
