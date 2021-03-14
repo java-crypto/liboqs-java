@@ -44,7 +44,7 @@ public class KEMTest {
         System.out.println("*** kem_name: " + kem_name + " ***");
 
         logString = "";
-        String kemName = "Sike-p751";
+        String kemName = "SIKE-p751";
         // just 1 run
         if (kem_name != kemName) {
             return;
