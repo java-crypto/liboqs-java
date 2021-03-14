@@ -40,49 +40,40 @@ public class SigTest {
     public void testAllSigs(String sig_name) throws IOException {
 
         // just 1 run
-        if (sig_name != "SIG_Dilithium2") {
-            return;
+        if (sig_name == "SIG_Dilithium2") {
+            StringBuilder sb = new StringBuilder();
+            sb.append(sig_name);
+            sb.append(String.format("%1$" + (40 - sig_name.length()) + "s", ""));
+            // Create signer and verifier
+            Signature signer = new Signature(sig_name);
+            Signature verifier = new Signature(sig_name);
+            // Generate signer key pair
+            byte[] signer_public_key = signer.generate_keypair();
+            // Sign the message
+            byte[] signature = signer.sign(message);
+            // Verify the signature
+            boolean is_valid = verifier.verify(message, signature, signer_public_key);
+            assertTrue(is_valid, sig_name);
+            // If successful print Sig name, otherwise an exception will be thrown
+            sb.append("\033[0;32m").append("PASSED").append("\033[0m");
+            System.out.println(sb.toString());
+            // own functions
+            logString = "";
+            String filename = "SIG_" + sig_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + ".txt";
+            //printLog("SIG " + sig_name);
+            printLog("SIG");
+            printLog(sig_name);
+            printLog("***********************************");
+            printLog("signer PrivateKey size: " + signer.export_secret_key().length);
+            printLog("signer PublicKey size:  " + signer.export_public_key().length);
+            printLog("signerPublicKey length: " + signer_public_key.length + " data: " + bytesToHex(signer_public_key));
+            printLog("***********************************");
+            printLog("signature length: " + signature.length);
+            printLog("signature hex:\n" + bytesToHex(signature));
+            printLog("signature valid: " + is_valid);
+            // save data
+            Files.write(Paths.get(filename), logString.getBytes(StandardCharsets.UTF_8));
         }
-
-        StringBuilder sb = new StringBuilder();
-        sb.append(sig_name);
-        sb.append(String.format("%1$" + (40 - sig_name.length()) + "s", ""));
-
-        // Create signer and verifier
-        Signature signer = new Signature(sig_name);
-        Signature verifier = new Signature(sig_name);
-
-        // Generate signer key pair
-        byte[] signer_public_key = signer.generate_keypair();
-
-        // Sign the message
-        byte[] signature = signer.sign(message);
-
-        // Verify the signature
-        boolean is_valid = verifier.verify(message, signature, signer_public_key);
-
-        assertTrue(is_valid, sig_name);
-
-        // If successful print Sig name, otherwise an exception will be thrown
-        sb.append("\033[0;32m").append("PASSED").append("\033[0m");
-        System.out.println(sb.toString());
-
-        // own functions
-        logString = "";
-        String filename = "SIG_" + sig_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + ".txt";
-        //printLog("SIG " + sig_name);
-        printLog("SIG");
-        printLog(sig_name);
-        printLog("***********************************");
-        printLog("signer PrivateKey size: " + signer.export_secret_key().length);
-        printLog("signer PublicKey size:  " + signer.export_public_key().length);
-        printLog("signerPublicKey length: " + signer_public_key.length + " data: " + bytesToHex(signer_public_key));
-        printLog("***********************************");
-        printLog("signature length: " + signature.length);
-        printLog("signature hex:\n" + bytesToHex(signature));
-        printLog("signature valid: " + is_valid);
-        // save data
-        Files.write(Paths.get(filename), logString.getBytes(StandardCharsets.UTF_8));
     }
 
     /**
