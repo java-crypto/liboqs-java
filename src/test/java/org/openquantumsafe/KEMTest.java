@@ -185,8 +185,8 @@ public class KEMTest {
         // algorithmFacts kem | name | private key length | public key length | ciphertext length
         algorithmFacts = algorithmFacts + "| key exchange (KEM) | " + kem_name + " | "
                 + server.export_secret_key().length + " | " + server.export_public_key()
-                + " | " + ciphertext.length + " |";
-        filename = "KEM_" + kem_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + "_af.txt";
+                + " | " + ciphertext.length + " |\n";
+        filename = "KEM_algorithm_facts_" + getActualDateReverse() + ".txt";
         Files.write(Paths.get(filename), algorithmFacts.getBytes(StandardCharsets.UTF_8));
     }
 

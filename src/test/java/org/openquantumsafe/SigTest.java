@@ -76,10 +76,10 @@ public class SigTest {
             Files.write(Paths.get(filename), logString.getBytes(StandardCharsets.UTF_8));
 
             // algorithmFacts kem | name | private key length | public key length | signature length
-            algorithmFacts = algorithmFacts + "| key exchange (KEM) | " + sig_name + " | "
+            algorithmFacts = algorithmFacts + "| signature | " + sig_name + " | "
                 + signer.export_secret_key().length + " | " + signer.export_public_key()
-                + " | " + signature.length + " |";
-        filename = "KEM_" + sig_name.replaceAll("\\.", "_") + "_" + getActualDateReverse() + "_af.txt";
+                + " | " + signature.length + " |\n";
+        filename = "SIG_algorithm_facts_" + "_" + getActualDateReverse() + ".txt";
         Files.write(Paths.get(filename), algorithmFacts.getBytes(StandardCharsets.UTF_8));
         //}
     }
