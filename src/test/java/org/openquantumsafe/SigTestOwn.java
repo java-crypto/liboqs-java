@@ -43,6 +43,8 @@ public class SigTestOwn {
         byte[] signature = signer.sign(message);
         printString = "signature length: " + signature.length + " data: in a separate file";
         printLog(printString);
+        // save the signature to file
+        Files.write(Paths.get(filename + "_signature.dat"), signature);
 
         printString = "\n* * * verify the signature against the plaintext with the public key * * *";
         printLog(printString);

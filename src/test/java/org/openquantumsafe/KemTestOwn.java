@@ -62,6 +62,8 @@ public class KemTestOwn {
         printString = "sharedSecretServer length: " + sharedSecretServer.length + " data: "
                 + bytesToHex(sharedSecretServer);
         printLog(printString);
+        // save the encrypted key to file
+        Files.write(Paths.get(filename + "_encryptedkey.dat"), encryptedKey);
 
         printString = "\n* * * decapsulate the keyToEncrypt with the private key of the recipient * * *";
         printLog(printString);
