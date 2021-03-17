@@ -33,6 +33,7 @@ public class Common {
         try {
             System.out.println("Common: try loading oqs-jni");
             System.loadLibrary("oqs-jni");
+            System.out.println("Java System.library.path: " + System.getProperty("java.library.path"));
             System.out.println("Common: try loading oqs-jni successfull");
         // Otherwise load the library from the liboqs-java.jar
         } catch (UnsatisfiedLinkError e) {
