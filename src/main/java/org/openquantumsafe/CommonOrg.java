@@ -7,7 +7,7 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.util.Arrays;
 
-public class Common {
+public class CommonOrg {
 
     private static final String OS = System.getProperty("os.name").toLowerCase();
 
@@ -31,23 +31,18 @@ public class Common {
         // If the library is in the java library path, load it directly. (e.g., -Djava.library.path=src/main/resources)
         System.out.println("Common/loadNativeLibrary");
         try {
-            System.out.println("Common: try loading oqs-jni");
             System.loadLibrary("oqs-jni");
-            System.out.println("Common: try loading oqs-jni successfull");
         // Otherwise load the library from the liboqs-java.jar
         } catch (UnsatisfiedLinkError e) {
-            System.out.println("Common: UnsatisfiedLinkError, try loading directly");
             String libName = "llliboqs-jni.so";
-            if (Common.isLinux()) {
-                System.out.println("Common: isLinux libName: " + libName);
+            if (CommonOrg.isLinux()) {
                 libName = "liboqs-jni.so";
-            } else if (Common.isMac()) {
+            } else if (CommonOrg.isMac()) {
                 libName = "liboqs-jni.jnilib";
-            } else if (Common.isWindows()) {
+            } else if (CommonOrg.isWindows()) {
                 System.out.println("Common.isWindows");
                 libName = "oqs-jni.dll";
             }
-            System.out.println("Common: before URL url = ...");
             URL url = KEMs.class.getResource("/" + libName);
             File tmpDir;
             try {
@@ -58,7 +53,6 @@ public class Common {
                 nativeLibTmpFile.deleteOnExit();
                 InputStream in = url.openStream();
                 Files.copy(in, nativeLibTmpFile.toPath());
-                System.out.println("Common: before System.load(nativeLibTmpFile.getAbsolutePath");
                 System.load(nativeLibTmpFile.getAbsolutePath());
             } catch (IOException ioException) {
                 ioException.printStackTrace();
